@@ -1,9 +1,12 @@
 import requests
+from datetime import date
 
 def main():
-    url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=307&date=14-06-2021'
 
-    r = requests.get(url)
+    # url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=307&date=14-06-2021'
+    url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
+
+    r = requests.get(url, { 'district_id' : 307, 'date' : date.today().strftime("%d-%m-%Y")})
     result = r.json()
 
     for center in result['centers']:
