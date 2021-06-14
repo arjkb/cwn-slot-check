@@ -12,7 +12,8 @@ def main():
             dose2_capacity = session['available_capacity_dose2']
 
             if dose1_capacity > 0 or dose2_capacity > 0:
-                print(center['name'], session['vaccine'], dose1_capacity, dose2_capacity)
+                print("{:30} {} {:15} {:>4} {:>4}".format(center['name'], session['date'], session['vaccine'], dose1_capacity, dose2_capacity))
+                # print("{:15} {} {} {} {} {}".format(center['name'], session['date'], session['vaccine'], dose1_capacity, dose2_capacity))
 
 if __name__ == '__main__':
     main()
