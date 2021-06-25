@@ -2,12 +2,14 @@ import requests
 from datetime import date
 from datetime import timedelta
 
-def print_results_for_district():
+DISTRICT_ID_ERNAKULAM_KERALA = 307
+
+def print_results_for_district(district_id):
     url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
 
     for days in [0, 7, 14, 21]:
         date_to_check = date.today() + timedelta(days=days)
-        r = requests.get(url, { 'district_id' : 307, 'date' : date_to_check.strftime("%d-%m-%Y")})
+        r = requests.get(url, { 'district_id' : district_id, 'date' : date_to_check.strftime("%d-%m-%Y")})
         result = r.json()
 
         for center in result['centers']:
@@ -17,7 +19,7 @@ def print_results_for_district():
                     print("{:40} {} {:12} {}+ {:>4} {:>4}".format(center['name'], session['date'], session['vaccine'], session['min_age_limit'], dose1_capacity, dose2_capacity))
 
 def main():
-    print_results_for_district()
+    print_results_for_district(DISTRICT_ID_ERNAKULAM_KERALA)
 
 
 if __name__ == '__main__':
