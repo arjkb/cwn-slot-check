@@ -1,4 +1,5 @@
 import requests
+import sys
 from datetime import date
 from datetime import timedelta
 
@@ -19,7 +20,11 @@ def print_results_for_district(district_id):
                     print("{:40} {} {:12} {}+ {:>4} {:>4}".format(center['name'], session['date'], session['vaccine'], session['min_age_limit'], dose1_capacity, dose2_capacity))
 
 def main():
-    print_results_for_district(DISTRICT_ID_ERNAKULAM_KERALA)
+    try:
+        district_id = int(sys.argv[1]) if len(sys.argv) > 1 else DISTRICT_ID_ERNAKULAM_KERALA
+    except:
+        sys.exit('Failed to parse command line arguments. Aborting.')
+    print_results_for_district(district_id)
 
 
 if __name__ == '__main__':
