@@ -2,7 +2,7 @@ import requests
 from datetime import date
 from datetime import timedelta
 
-def main():
+def print_results_for_district():
     url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
 
     for days in [0, 7, 14, 21]:
@@ -15,6 +15,10 @@ def main():
                 dose1_capacity, dose2_capacity = session['available_capacity_dose1'], session['available_capacity_dose2']
                 if dose1_capacity > 0 or dose2_capacity > 0:
                     print("{:40} {} {:12} {}+ {:>4} {:>4}".format(center['name'], session['date'], session['vaccine'], session['min_age_limit'], dose1_capacity, dose2_capacity))
+
+def main():
+    print_results_for_district()
+
 
 if __name__ == '__main__':
     main()
